@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Muuke Villa · 10 Service Codes</title>
+<style>
+  :root {
+    --charcoal: #2A2725;
+    --sand: #E7DED9;
+    --tan: #C4A882;
+    --white: #FAFAF8;
+    --muted: #8a8078;
+    --soft: #f2ede8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background: var(--sand);
+    color: var(--charcoal);
+    min-height: 100vh;
+  }
+  header {
+    background: var(--white);
+    padding: 28px 20px 22px;
+    border-bottom: 2px solid var(--tan);
+    text-align: center;
+  }
+  .header-brand {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--charcoal);
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+  }
+  .header-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header-tagline {
+    font-size: 12px;
+    color: var(--tan);
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+  .intro-bar {
+    background: var(--charcoal);
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #a09890;
+    letter-spacing: 0.06em;
+  }
+  .intro-bar span { color: var(--tan); }
+  .codes-list { padding: 12px 14px 40px; }
+  .code-card {
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(42,39,37,0.07);
+  }
+  .code-card.open { box-shadow: 0 3px 12px rgba(42,39,37,0.13); }
+  .code-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 14px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    gap: 14px;
+  }
+  .code-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 1.5px solid var(--tan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--tan);
+    flex-shrink: 0;
+  }
+  .code-card.open .code-number {
+    background: var(--charcoal);
+    color: var(--tan);
+    border-color: var(--charcoal);
+  }
+  .code-titles { flex: 1; }
+  .code-title-en {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--charcoal);
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+  }
+  .code-title-cn {
+    font-size: 11px;
+    color: var(--tan);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .code-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .code-chevron {
+    font-size: 14px;
+    color: var(--tan);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .code-card.open .code-chevron { transform: rotate(180deg); }
+  .code-detail {
+    display: none;
+    padding: 0 16px 18px;
+    border-top: 1px solid var(--sand);
+  }
+  .code-card.open .code-detail { display: block; }
+  .detail-section { margin-top: 14px; }
+  .detail-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .detail-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sand);
+  }
+  .detail-text {
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+  .detail-case {
+    background: var(--soft);
+    border-left: 3px solid var(--tan);
+    padding: 8px 12px;
+    margin-top: 6px;
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .detail-case strong { color: var(--charcoal); font-style: normal; }
+  footer {
+    background: var(--charcoal);
+    padding: 20px;
+    text-align: center;
+    color: #6a6360;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  footer span { color: var(--tan); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">Muuke Villa · 木可町度假酒店 · Moganshan</div>
+  <div class="header-title">10 Service Codes</div>
+  <div class="header-sub">十项服务准则</div>
+  <div class="header-tagline">Not just a hotel — a place where the heart comes home</div>
+</header>
+
+<div class="intro-bar">
+  Tap any code to expand · <span>V3 · March 2026</span>
+</div>
+
+<div class="codes-list">
+
+  <!-- 01 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">01</div>
+      <div class="code-titles">
+        <div class="code-title-en">Presence</div>
+        <div class="code-title-cn">在场感</div>
+        <div class="code-subtitle">Be fully here. Your attention is the service.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Put down whatever you're doing when engaging with a guest. Maintain eye contact, don't interrupt, and respond to needs immediately.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Management walkthroughs are never just box-ticking. Stay focused — observe team state, spot and resolve guest needs proactively.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Maintenance and housekeeping work with focus and efficiency. Don't disturb guests. Respond to urgent repair requests immediately.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">02</div>
+      <div class="code-titles">
+        <div class="code-title-en">Natural Ease</div>
+        <div class="code-title-cn">从容自然</div>
+        <div class="code-subtitle">Stay calm and unhurried. Let the experience unfold naturally.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Keep a natural, unhurried manner. Avoid over-enthusiasm or scripted greetings — guests should feel sincerity, not performance.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">The team's energy should feel calm and composed. Never let guests see stress or panic. Professionalism and ease go together.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Back-of-house workflows should run smoothly. Reduce unnecessary urgency — a steady rhythm behind the scenes supports quality at the front.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">03</div>
+      <div class="code-titles">
+        <div class="code-title-en">Quiet Way</div>
+        <div class="code-title-cn">无声之道</div>
+        <div class="code-subtitle">Notice · Prepare · Act — before they ask.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service · Stay Observant</div>
+        <div class="detail-text">Anticipate needs through observation — act before the guest has to ask.</div>
+        <div class="detail-case"><strong>Example:</strong> A guest's water glass is nearly empty. Refill it quietly without interrupting their conversation.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations · Data-Driven</div>
+        <div class="detail-text">Build observation systems that predict recurring guest needs.</div>
+        <div class="detail-case"><strong>Example:</strong> Data shows a high volume of family guests — pre-stock cribs on guest floors and proactively check in with families at arrival.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House · Proactive Checks</div>
+        <div class="detail-text">Identify hazards and restock supplies without waiting to be asked.</div>
+        <div class="detail-case"><strong>Example:</strong> Housekeeping notices a loose door track — log it for repair on the spot rather than waiting for a complaint.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">04</div>
+      <div class="code-titles">
+        <div class="code-title-en">You Go First</div>
+        <div class="code-title-cn">先开口</div>
+        <div class="code-subtitle">Always be the first to smile. Always be the first to say hello.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">When you make eye contact with a guest, smile and greet them first — always. In corridors, the elevator, the restaurant — the team initiates.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Management proactively checks in with team members — ask about workload, challenges, and wellbeing. Build a culture where communication flows openly.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Departments communicate proactively across teams — don't wait for others to raise issues. Reduce information gaps before they become problems.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">05</div>
+      <div class="code-titles">
+        <div class="code-title-en">Boundaries</div>
+        <div class="code-title-cn">边界感</div>
+        <div class="code-subtitle">Respect privacy, distance, and personal space.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Don't pry into guests' personal matters. Maintain a comfortable social distance of about 1.5m. Never enter a guest room area without knocking first.</div>
+        <div class="detail-case"><strong>Example:</strong> Reception never shares information about a guest with a third party without the guest's consent. All in-room service requires knocking and confirmation first.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Sensitive guest information is strictly confidential — never disclosed to third parties. Private meetings, dining, and events have dedicated quiet spaces free from outside interference.</div>
+        <div class="detail-case"><strong>Example:</strong> When verifying guest information at the desk, the team member turns the screen away to protect privacy.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Housekeeping and maintenance staff must never touch or move guests' personal belongings. Work quietly and stay focused — never discuss guest matters with colleagues during shifts.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">06</div>
+      <div class="code-titles">
+        <div class="code-title-en">Ownership</div>
+        <div class="code-title-cn">担当</div>
+        <div class="code-subtitle">See it. Take it. Fix it.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Core Principle</div>
+        <div class="detail-text">When something goes wrong — don't deflect, don't wait, don't walk past it. Whether or not it's your job description, take it and drive it to resolution.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">When a guest raises a complaint, take ownership immediately. No excuses, no passing the buck. Stay with it until it's resolved and confirmed.</div>
+        <div class="detail-case"><strong>Example:</strong> AC malfunction — the team member apologises at once and follows through on the repair, keeping the guest updated until it's fixed.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Management owns operational problems — accountability flows upward, not downward. When mistakes happen, acknowledge them, make it right, and debrief with the team.</div>
+        <div class="detail-case"><strong>Example:</strong> A double-booking error — apologise, upgrade the room, and hold a full team debrief afterwards.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Shortages and equipment failures get resolved fast — no waiting around for someone to assign blame. Fix it first, review process after.</div>
+        <div class="detail-case"><strong>Example:</strong> Not enough crockery during service — source and redistribute immediately, then review inventory management.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">07</div>
+      <div class="code-titles">
+        <div class="code-title-en">Leave It Better</div>
+        <div class="code-title-cn">洁净如初</div>
+        <div class="code-subtitle">Every space, every time — cleaner than you found it.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service · Respond Immediately</div>
+        <div class="detail-text">Clear and reset any guest-facing space promptly after use. After providing anything, ensure the setting is clean and presentable.</div>
+        <div class="detail-case"><strong>Example:</strong> Once a guest leaves their seat in the lobby, reset the sofa and replace the tableware immediately — return it to its best state.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations · Hold the Standard</div>
+        <div class="detail-text">Establish a clear cleaning responsibility system with defined standards and frequencies. Conduct regular spot checks.</div>
+        <div class="detail-case"><strong>Example:</strong> Maintain a Public Area Cleaning Manual with random audits to ensure consistent execution.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House · Deep Clean</div>
+        <div class="detail-text">Use eco-friendly products and pay close attention to hidden areas — guest rooms, kitchen corners, overlooked surfaces.</div>
+        <div class="detail-case"><strong>Example:</strong> Departure cleaning must cover every corner thoroughly — the room should be ready to check in without a second pass.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">08</div>
+      <div class="code-titles">
+        <div class="code-title-en">Nature</div>
+        <div class="code-title-cn">顺应自然</div>
+        <div class="code-subtitle">Adjust to light, weather, season, and surroundings.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Weave Moganshan's natural rhythms into every guest experience — seasonal dishes, bamboo forest walks, stillness in the morning mist. Let nature be the centrepiece, not the backdrop.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Reduce artificial intervention. Menus change with the seasons. Activities follow the weather and environment. Don't manufacture experiences — let them emerge naturally.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Prioritise eco-friendly materials and sustainable sourcing. Minimise impact on the surrounding natural environment — care for the farm and bamboo forest ecosystem.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">09</div>
+      <div class="code-titles">
+        <div class="code-title-en">Safety Mindset</div>
+        <div class="code-title-cn">安全意识</div>
+        <div class="code-subtitle">Stay calm, stay alert — protect guests and each other.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Always be aware of guests' physical safety — give extra attention to elderly guests, children, and guests with special needs. Any hazard spotted must be addressed or escalated immediately.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Regular safety training and fire drills ensure every team member knows emergency procedures. Safety equipment must be maintained and functional — never compromised for aesthetics.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Engineering and maintenance must follow safety protocols strictly. Hazardous areas are marked and cordoned off immediately. Food storage must meet hygiene and safety standards at all times.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="code-card" onclick="toggle(this)">
+    <div class="code-header">
+      <div class="code-number">10</div>
+      <div class="code-titles">
+        <div class="code-title-en">Respect Always</div>
+        <div class="code-title-cn">以礼待人</div>
+        <div class="code-subtitle">Everyone who walks through our door deserves to be treated with dignity.</div>
+      </div>
+      <div class="code-chevron">▾</div>
+    </div>
+    <div class="code-detail">
+      <div class="detail-section">
+        <div class="detail-label">Guest Service</div>
+        <div class="detail-text">Treat every guest equally — regardless of appearance, age, or spend. Politeness and warmth are not conditional.</div>
+        <div class="detail-case"><strong>Example:</strong> Welcome an elderly guest in modest clothing with the same warmth and patience as anyone else — take time to explain room options fully, without rushing.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Hotel Operations</div>
+        <div class="detail-text">Management respects all team members. The team supports each other. Zero tolerance for workplace discrimination or disrespect.</div>
+        <div class="detail-case"><strong>Example:</strong> When a new team member makes a mistake, guide and encourage — don't humiliate. Use respectful language in all team communication.</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Back of House</div>
+        <div class="detail-text">Respect applies across every role and partner. The same standards hold whether you're dealing with a supplier, a contractor, or a colleague in another department.</div>
+        <div class="detail-case"><strong>Example:</strong> Procurement negotiates with suppliers courteously. Housekeeping and service staff greet and give way to each other when passing in corridors.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div><span>Muuke Villa</span> · 木可町度假酒店 · Moganshan</div>
+  <div style="margin-top:4px">10 Service Codes V3 · March 2026</div>
+</footer>
+
+<script>
+function toggle(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.code-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+</script>
+</body>
+</html>
